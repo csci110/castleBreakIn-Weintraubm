@@ -56,6 +56,7 @@ class Princess extends Sprite {
     handleGameLoop() {
         this.x = Math.min(game.displayWidth - rightWall.width - this.width, this.x);
     }
+    // do for left wall dummy
 }
 let ann = new Princess();
 
@@ -68,6 +69,7 @@ class Ball extends Sprite {
         this.name = "Soccer Ball";
         this.setImage("ball.png");
         this.defineAnimation("spin",0,12);
+        this. playAnimation("spin");
         this.speed = 1;
         this.angle = 50+ Math.random() * 80;
     }
