@@ -2,6 +2,13 @@ import { game, Sprite } from "./sgc/sgc.js";
 
 game.setBackground("grass.png");
 
+// methods for parenthesis
+// let fred = new Student();   FUNCTION, METHOD, () RIGHT, Calling to constructor
+//class Student extends Person {}    DEFINE consctuctor {} RIGHT
+//{} define 
+//()Call upon or summon
+
+
 class Wall extends Sprite {
     constructor(x, y, name, image) {
         super();
@@ -50,4 +57,25 @@ class Princess extends Sprite {
         this.x = Math.min(game.displayWidth - rightWall.width - this.width, this.x);
     }
 }
-    let ann = new Princess();
+let ann = new Princess();
+
+
+class Ball extends Sprite {
+    constructor() {
+        super();
+        this.x = game.displayWidth /2;
+        this.y = game.displayHeight /2;
+        this.name = "Soccer Ball";
+        this.setImage("ball.png");
+        this.defineAnimation("spin",0,12);
+        this.speed = 1;
+        this.angle = 50+ Math.random() * 80;
+    }
+    handleGameLoop() {
+        if (this.speed < 200) {
+            this.speed + 2;
+        }
+    }
+}
+
+new Ball();
