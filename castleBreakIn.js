@@ -55,8 +55,9 @@ class Princess extends Sprite {
     }
     handleGameLoop() {
         this.x = Math.min(game.displayWidth - rightWall.width - this.width, this.x);
+        this.x = Math.max( 48, this.x)
     }
-    // do for left wall dummy
+    // do for left wall/ FIND BETTER WAY DUMMY 
 }
 let ann = new Princess();
 
