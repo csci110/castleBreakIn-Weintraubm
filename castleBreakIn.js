@@ -8,7 +8,13 @@ game.setBackground("grass.png");
 //{} define 
 //()Call upon or summon
 
-//tutorial.reduseReuseRecycle() {// R
+//tutorial.reduseReuseRecycle() {// Remember to summon super() in every derived
+                                 // class constructor
+//study THIS
+//let x=3;          //single equal is used for assignment. It means "gets"
+//if (x == true) {  // evaluates to true since any non-zero value is true-ish
+//if (x === 3) {    // evaluates to true since x has the same value AND the same type
+
 
 
 class Wall extends Sprite {
@@ -47,8 +53,8 @@ class Princess extends Sprite {
     }
     handleFirstGameLoop() {
         // display lives
-        this.livesDisplay = game.createTextArea(game.displayWidth + 48 * 3 , 20);
-        this.updateLivesDisplay;
+        this.livesDisplay = game.createTextArea(game.displayWidth - 3 * 48, 20);
+        this.updateLivesDisplay();
 
     }
     handleLeftArrowKey() {
@@ -64,9 +70,10 @@ class Princess extends Sprite {
     handleGameLoop() {
         this.x = Math.min(game.displayWidth - rightWall.width - this.width, this.x);
         this.x = Math.max(48, this.x);
-        if (this.x) {
-            this.speed = 0;
-        }
+        // if (this.x) {
+        //     this.speed = 0;
+        // }
+        this.speed = 0;
     }
     updateLivesDisplay() {
         game.writeToTextArea(this.livesDisplay, "Lives = " + this.lives);
@@ -102,18 +109,15 @@ class Princess extends Sprite {
 
     }
     LoseALife() {
-        this.lives = -1;
+        this.lives = this.lives - 1;
         this.updateLivesDisplay();
-        if (this.lives > 0){
+        if (this.lives > 0) {
             new Ball();
         }
-        if (this.lives == 0){
+        if (this.lives <= 0) {
             game.end('The mysterious stranger has escaped\nPrincess Ann for now!\n\nBetter luck next time.');
         }
-        
     }
-
-
     // do for left wall/ FIND BETTER WAY DUMMY 
 }
 let ann = new Princess();
@@ -126,20 +130,20 @@ class Ball extends Sprite {
         this.y = game.displayHeight / 2;
         this.name = "Soccer Ball";
         this.setImage("ball.png");
-        this.defineAnimation("spin", 0, 12);
-        this.playAnimation("spin");
+        this.defineAnimation("spin", 0, 11);
+        this.playAnimation("spin", true);
         this.speed = 1;
         this.angle = 50 + Math.random() * 80;
     }
     handleGameLoop() {
         if (this.speed <= 200) {
-            this.speed++;
+            this.speed = this.speed + 2; // I changed this.  ++ increments by 1
         }
     }
     handleBoundaryContact() {
         game.removeSprite(this);
         ann.LoseALife();
-    } 
+    }
 }
 
 new Ball();
