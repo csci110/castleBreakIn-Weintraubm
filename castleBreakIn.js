@@ -147,3 +147,33 @@ class Ball extends Sprite {
 }
 
 new Ball();
+
+class Block extends Sprite {
+    constructor(x,y) {
+        super();
+        this.name = "block";
+        this.x = x;
+        this.y = y;
+        this.setImage("block1.png");
+        this.accelerateOnBounce = false;
+        Block.blocksToDestroy = Block.blocksToDestroy +1; 
+    }
+    handleCollision() {
+        game.removeSprite(this);
+        Block.blocksToDestroy = Block.blocksToDestroy - 1;
+        if(Block.blocksToDestroy == 0) {
+            game.end('Congratulations!\n\nPrincess Ann can continue her pursuit\nof the mysterious stranger!');
+        }
+        
+    }
+    
+}
+
+
+for (let i = 0; i < 5; i = i + 1) {
+
+    new Block(200 + i * 48, 200);
+
+}
+
+
