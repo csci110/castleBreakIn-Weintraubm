@@ -47,7 +47,7 @@ class Princess extends Sprite {
     }
     handleFirstGameLoop() {
         // display lives
-        this.livesDisplay = game.createTextArea(game.displayWidth + 144, 20);
+        this.livesDisplay = game.createTextArea(game.displayWidth + 48 * 3 , 20);
         this.updateLivesDisplay;
 
     }
