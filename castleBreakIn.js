@@ -55,8 +55,14 @@ class Princess extends Sprite {
     }
     handleGameLoop() {
         this.x = Math.min(game.displayWidth - rightWall.width - this.width, this.x);
-        this.x = Math.max( 48, this.x)
+        this.x = Math.max(48, this.x);
     }
+    //handleGameLoop() {
+      //  if (this.x) {
+        //    this.speed = 0;
+        //}
+
+    //}
     // do for left wall/ FIND BETTER WAY DUMMY 
 }
 let ann = new Princess();
@@ -65,14 +71,14 @@ let ann = new Princess();
 class Ball extends Sprite {
     constructor() {
         super();
-        this.x = game.displayWidth /2;
-        this.y = game.displayHeight /2;
+        this.x = game.displayWidth / 2;
+        this.y = game.displayHeight / 2;
         this.name = "Soccer Ball";
         this.setImage("ball.png");
-        this.defineAnimation("spin",0,12);
-        this. playAnimation("spin");
+        this.defineAnimation("spin", 0, 12);
+        this.playAnimation("spin");
         this.speed = 1;
-        this.angle = 50+ Math.random() * 80;
+        this.angle = 50 + Math.random() * 80;
     }
     handleGameLoop() {
         if (this.speed < 200) {
