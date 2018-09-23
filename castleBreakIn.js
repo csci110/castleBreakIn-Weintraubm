@@ -164,11 +164,13 @@ class Block extends Sprite {
         if(Block.blocksToDestroy == 0) {
             game.end('Congratulations!\n\nPrincess Ann can continue her pursuit\nof the mysterious stranger!');
         }
+        return true;
         
     }
     
 }
 
+Block.blocksToDestroy = 0;
 
 for (let i = 0; i < 5; i = i + 1) {
 
