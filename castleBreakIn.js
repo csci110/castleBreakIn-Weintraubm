@@ -111,13 +111,13 @@ class Princess extends Sprite {
     LoseALife() {
         this.lives = this.lives - 1;
         this.updateLivesDisplay();
-        if (this.lives > 0) {
+        if (this.lives > 0 ) {
             new Ball();
         }
         if (this.lives <= 0) {
             game.end('The mysterious stranger has escaped\nPrincess Ann for now!\n\nBetter luck next time.');
         }
-        
+
     }
     addALife() {
         this.lives++;
@@ -139,6 +139,7 @@ class Ball extends Sprite {
         this.playAnimation("spin", true);
         this.speed = 1;
         this.angle = 50 + Math.random() * 80;
+        Ball.ballsInPlay = Ball.ballsInPlay++;
     }
     handleGameLoop() {
         if (this.speed <= 200) {
@@ -147,9 +148,15 @@ class Ball extends Sprite {
     }
     handleBoundaryContact() {
         game.removeSprite(this);
-        ann.LoseALife();
+        Ball.ballsInPlay = Ball.ballsInPlay - 1;
+        if (Ball.ballsInPlay <= 0) {
+            ann.LoseALife();
+        }
     }
+
 }
+
+Ball.ballsInPlay = 0;
 
 new Ball();
 
@@ -189,16 +196,16 @@ for (let i = 0; i < 5; i = i + 1) {
 
 
 class ExtraLifeBlock extends Block {
-    constructor(x,y) {
-        super(x,y);
-        this.x = 200;
-        this.y =250;
+    constructor(x, y) {
+        super(x, y);
+        this.x = 100;
+        this.y = 250;
         this.setImage("block2.png");
         Block.blocksToDestroy - 1;
-        
+
     }
     handleCollision() {
-        ann.LoseALife();
+        ann.addALife();
         return true;
     }
 }
@@ -207,9 +214,9 @@ class ExtraLifeBlock extends Block {
 class ExtraBallBlock extends Block {
     constructor() {
         super();
-        this.x =300;
+        this.x = 300;
         this.y = 250;
-        
+
     }
     handleCollision() {
         super.handleCollision(); // call function in superclass
