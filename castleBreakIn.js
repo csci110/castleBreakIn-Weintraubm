@@ -117,6 +117,11 @@ class Princess extends Sprite {
         if (this.lives <= 0) {
             game.end('The mysterious stranger has escaped\nPrincess Ann for now!\n\nBetter luck next time.');
         }
+        
+    }
+    addALife() {
+        this.lives++;
+        this.updateLivesDisplay();
     }
     // do for left wall/ FIND BETTER WAY DUMMY 
 }
@@ -189,7 +194,12 @@ class ExtraLifeBlock extends Block {
         this.x = 200;
         this.y =250;
         this.setImage("block2.png");
+        Block.blocksToDestroy - 1;
         
+    }
+    handleCollision() {
+        ann.LoseALife();
+        return true;
     }
 }
 
@@ -200,6 +210,11 @@ class ExtraBallBlock extends Block {
         this.x =300;
         this.y = 250;
         
+    }
+    handleCollision() {
+        super.handleCollision(); // call function in superclass
+        new Ball(); // extend superclass behavior
+        return true;
     }
 }
 
