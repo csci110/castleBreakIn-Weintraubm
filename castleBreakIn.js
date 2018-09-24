@@ -9,7 +9,7 @@ game.setBackground("grass.png");
 //()Call upon or summon
 
 //tutorial.reduseReuseRecycle() {// Remember to summon super() in every derived
-                                 // class constructor
+// class constructor
 //study THIS
 //let x=3;          //single equal is used for assignment. It means "gets"
 //if (x == true) {  // evaluates to true since any non-zero value is true-ish
@@ -149,25 +149,25 @@ class Ball extends Sprite {
 new Ball();
 
 class Block extends Sprite {
-    constructor(x,y) {
+    constructor(x, y) {
         super();
         this.name = "block";
         this.x = x;
         this.y = y;
         this.setImage("block1.png");
         this.accelerateOnBounce = false;
-        Block.blocksToDestroy = Block.blocksToDestroy +1; 
+        Block.blocksToDestroy = Block.blocksToDestroy + 1;
     }
     handleCollision() {
         game.removeSprite(this);
         Block.blocksToDestroy = Block.blocksToDestroy - 1;
-        if(Block.blocksToDestroy == 0) {
+        if (Block.blocksToDestroy == 0) {
             game.end('Congratulations!\n\nPrincess Ann can continue her pursuit\nof the mysterious stranger!');
         }
         return true;
-        
+
     }
-    
+
 }
 
 Block.blocksToDestroy = 0;
@@ -177,5 +177,32 @@ for (let i = 0; i < 5; i = i + 1) {
     new Block(200 + i * 48, 200);
 
 }
+// let x = 0
+// while (x < 5) {
+//count++
 
 
+
+class ExtraLifeBlock extends Block {
+    constructor(x,y) {
+        super(x,y);
+        this.x = 200;
+        this.y =250;
+        this.setImage("block2.png");
+        
+    }
+}
+
+
+class ExtraBallBlock extends Block {
+    constructor() {
+        super();
+        this.x =300;
+        this.y = 250;
+        
+    }
+}
+
+new ExtraBallBlock();
+
+new ExtraLifeBlock();
