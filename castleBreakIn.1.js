@@ -225,23 +225,7 @@ class ExtraBallBlock extends Block {
     }
 }
 
-class obstacleBlock extends Block {
-    constructor() {
-        super();
-        this.x = 250;
-        this.y = 250;
-        this.setImage("block2.png");
-    }
-    handleCollision() {
-        game.removeSprite(this);
-        game.removeSprite(Ball);
-        for (let i = 0; i < 6; i = i + 1) {
-            new Block(300 + i * 48, 350);
 
-        }
-
-    }
-}
 
 class SpeedBlock extends Block {
     constructor() {
@@ -259,6 +243,27 @@ new ExtraBallBlock();
 
 new ExtraLifeBlock();
 
-new obstacleBlock();
-
 new SpeedBlock();
+
+
+
+class obstacleBlock extends Block {
+    constructor() {
+        super();
+        this.x = 250;
+        this.y = 250;
+        this.setImage("block2.png");
+    }
+    handleCollision() {
+        game.removeSprite(this);
+        game.removeSprite(Ball);
+        for (let i = 0; i < 6; i = i + 1) {
+            new Block(300 + i * 48, 350);
+        Block.blocksToDestroy + 6;
+
+        }
+
+    }
+}
+
+new obstacleBlock();
