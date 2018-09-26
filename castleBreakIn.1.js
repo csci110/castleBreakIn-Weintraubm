@@ -259,7 +259,6 @@ class obstacleBlock extends Block {
         game.removeSprite(Ball);
         for (let i = 0; i < 6; i = i + 1) {
             new Block(300 + i * 48, 350);
-        Block.blocksToDestroy + 6;
 
         }
 
