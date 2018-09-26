@@ -111,7 +111,7 @@ class Princess extends Sprite {
     LoseALife() {
         this.lives = this.lives - 1;
         this.updateLivesDisplay();
-        if (this.lives > 0 ) {
+        if (this.lives > 0) {
             new Ball();
         }
         if (this.lives <= 0) {
@@ -184,7 +184,7 @@ class Block extends Sprite {
 
 Block.blocksToDestroy = 0;
 
-for (let i = 0; i < 5; i = i + 1) {
+for (let i = 0; i < 8; i = i + 1) {
 
     new Block(200 + i * 48, 200);
 
@@ -225,6 +225,40 @@ class ExtraBallBlock extends Block {
     }
 }
 
+class obstacleBlock extends Block {
+    constructor() {
+        super();
+        this.x = 250;
+        this.y = 250;
+        this.setImage("block2.png");
+    }
+    handleCollision() {
+        game.removeSprite(this);
+        game.removeSprite(Ball);
+        for (let i = 0; i < 6; i = i + 1) {
+            new Block(300 + i * 48, 350);
+
+        }
+
+    }
+}
+
+class SpeedBlock extends Block {
+    constructor() {
+        super();
+        this.x = 500;
+        this.y = 300;
+        this.setImage("block3.png");
+    }
+    handleCollision() {
+        game.removeSprite(this);
+        ann.speed = ann.speed + 100;
+    }
+}
 new ExtraBallBlock();
 
 new ExtraLifeBlock();
+
+new obstacleBlock();
+
+new SpeedBlock();
