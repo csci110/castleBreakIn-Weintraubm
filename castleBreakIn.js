@@ -139,7 +139,7 @@ class Ball extends Sprite {
         this.playAnimation("spin", true);
         this.speed = 1;
         this.angle = 50 + Math.random() * 80;
-        Ball.ballsInPlay = Ball.ballsInPlay++;
+        Ball.ballsInPlay++;
     }
     handleGameLoop() {
         if (this.speed <= 200) {
