@@ -217,6 +217,7 @@ class ExtraBallBlock extends Block {
         super();
         this.x = 300;
         this.y = 250;
+        Block.blocksToDestroy - 1;
 
     }
     handleCollision() {
@@ -234,11 +235,11 @@ class SpeedBlock extends Block {
         this.x = 500;
         this.y = 300;
         this.setImage("block3.png");
-        Block.blocksToDestroy -1;
+        Block.blocksToDestroy - 1;
     }
     handleCollision() {
         game.removeSprite(this);
-        ann.speed= ann.speed + 400;
+        ann.speed + 400;
     }
 }
 new ExtraBallBlock();
@@ -268,5 +269,3 @@ class obstacleBlock extends Block {
 }
 
 new obstacleBlock();
-
-Block.blocksToDestroy -3;
