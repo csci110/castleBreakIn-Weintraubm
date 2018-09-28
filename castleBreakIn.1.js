@@ -173,6 +173,7 @@ class Block extends Sprite {
     handleCollision() {
         game.removeSprite(this);
         Block.blocksToDestroy = Block.blocksToDestroy - 1;
+        console.log(Block.blocksToDestroy);
         if (Block.blocksToDestroy == 0) {
             game.end('Congratulations!\n\nPrincess Ann can continue her pursuit\nof the mysterious stranger!');
         }
@@ -233,10 +234,11 @@ class SpeedBlock extends Block {
         this.x = 500;
         this.y = 300;
         this.setImage("block3.png");
+        Block.blocksToDestroy -1;
     }
     handleCollision() {
         game.removeSprite(this);
-        ann.speed = ann.speed + 100;
+        ann.speed= ann.speed + 400;
     }
 }
 new ExtraBallBlock();
@@ -266,3 +268,5 @@ class obstacleBlock extends Block {
 }
 
 new obstacleBlock();
+
+Block.blocksToDestroy -3;
