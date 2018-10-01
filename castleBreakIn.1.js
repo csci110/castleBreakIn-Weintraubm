@@ -183,26 +183,13 @@ class Block extends Sprite {
 
 }
 
-Block.blocksToDestroy = 0;
-
-for (let i = 0; i < 8; i = i + 1) {
-
-    new Block(200 + i * 48, 200);
-
-}
-// let x = 0
-// while (x < 5) {
-//count++
-
-
-
 class ExtraLifeBlock extends Block {
     constructor(x, y) {
         super(x, y);
-        this.x = 100;
-        this.y = 250;
+        this.x = x;
+        this.y = y;
         this.setImage("block2.png");
-        Block.blocksToDestroy - 1;
+        Block.blocksToDestroy = Block.blocksToDestroy - 1;
 
     }
     handleCollision() {
@@ -213,11 +200,11 @@ class ExtraLifeBlock extends Block {
 
 
 class ExtraBallBlock extends Block {
-    constructor() {
-        super();
-        this.x = 300;
-        this.y = 250;
-        Block.blocksToDestroy - 1;
+    constructor(x, y) {
+        super(x, y);
+        this.x = x;
+        this.y = y;
+        Block.blocksToDestroy = Block.blocksToDestroy - 1;
 
     }
     handleCollision() {
@@ -230,43 +217,55 @@ class ExtraBallBlock extends Block {
 
 
 class SpeedBlock extends Block {
-    constructor() {
-        super();
-        this.x = 500;
-        this.y = 300;
+    constructor(x, y) {
+        super(x, y);
+        this.x = x;
+        this.y = y;
         this.setImage("block3.png");
-        Block.blocksToDestroy - 1;
+        Block.blocksToDestroy = Block.blocksToDestroy - 1;
     }
     handleCollision() {
         game.removeSprite(this);
         ann.speed + 400;
+        return true;
     }
 }
-new ExtraBallBlock();
-
-new ExtraLifeBlock();
-
-new SpeedBlock();
-
-
 
 class obstacleBlock extends Block {
-    constructor() {
-        super();
-        this.x = 250;
-        this.y = 250;
+    constructor(x, y) {
+        super(x, y);
+        this.x = x;
+        this.y = y;
         this.setImage("block2.png");
+        Block.blocksToDestroy = Block.blocksToDestroy - 1;
     }
     handleCollision() {
         game.removeSprite(this);
         game.removeSprite(Ball);
-        Block.blocksToDestroy -1;
         for (let i = 0; i < 6; i = i + 1) {
             new Block(300 + i * 48, 350);
 
         }
+        return true;
 
     }
 }
 
-new obstacleBlock();
+Block.blocksToDestroy = 0;
+
+for (let i = 0; i < 8; i = i + 1) {
+
+    new Block(200 + i * 48, 200);
+
+}
+// let x = 0
+// while (x < 5) {
+//count++
+
+new ExtraBallBlock(300, 250);
+
+new ExtraLifeBlock(100, 250);
+
+new SpeedBlock(500, 300);
+
+new obstacleBlock(250, 250);
